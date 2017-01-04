@@ -26,13 +26,27 @@
 		<div class="body screen-center" v-if="!loading">
 			<div class="row">
 				<div class="col s12 cards-container">
-					<div class="card">
+					<div class="card" v-for="i in 10" style="display: inline-block;">
+					    <div class="card-image waves-effect waves-block waves-light" style="padding:1em;">
+					      여기에 글에 대한 소개글이 간략하게 들어가는 것이 좋겠다.  <br>
+					      이런 식으로 몇개를 더 만들어 봐야 할 듯...
+					    </div>
+					    <div class="card-content">
+					      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+					      <p><a href="#">This is a link</a></p>
+					    </div>
+					    <div class="card-reveal">
+					      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+					      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+					    </div>
+					</div>
+<!-- 					<div class="card" v-for="i in ['1', '2', '3', '4', '5']">
 						<div class="card-content">
 							<p>
 								어떤 내용이 나와야 할까요?
 							</p>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -93,7 +107,24 @@ export default {
 	
 </script>
 <style lang="scss" scoped>
-.myhome-page{
+.myhome-page {
+	.cards-container {
 
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center; 
+		align-items: center;
+		flex-grow: 1;
+
+		.card {
+			margin: 0.3em;
+		    display: inline-block;
+		    overflow: visible;
+		    border: 1px solid #ccc;
+		    width: 100%;
+		    max-width: 400px;
+		}
+	}
 }
 </style>
