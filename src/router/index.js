@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 // intro
 import LoginForm from '../intro/LoginForm'
 
-import MyHome from '../components/MainHome'
+import BlogHome from '../components/BlogHome'
 import TechBlogs from '../components/TechBlogs';
 
 
@@ -30,9 +30,9 @@ function requireAuth (to, from, next) {
 
 const routes = [
 
-    { path: local+'/', component: MyHome},
+    { path: local+'/', component: BlogHome},
     
-    { path: local+'/blog_nemv/bloghome', name:'bloghome', component: MyHome},
+    { path: local+'/blog_nemv/bloghome', name:'bloghome', component: BlogHome},
     { path: local+'/blog_nemv/techs', name:'techs', component: TechBlogs},
 
 ]
