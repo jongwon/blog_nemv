@@ -88,11 +88,7 @@ export default {
 		getWindowHeight(event) {
 			this.windowHeight = document.documentElement.clientHeight;
 			
-			console.log("this.windowHeight : " + this.windowHeight)
-			console.log("this.windowWidth : " + this.windowWidth)
-
 			if (window.location.pathname.indexOf("splashscreen")<0) {
-				console.log("getSplScrWindowWidth +++++++++++++++++++++")
 				$("#main-body").css({'height': ''})
 			}
 

@@ -40,13 +40,6 @@
 					      <p>Here is some more information about this product that is only revealed once clicked on.</p>
 					    </div>
 					</div>
-<!-- 					<div class="card" v-for="i in ['1', '2', '3', '4', '5']">
-						<div class="card-content">
-							<p>
-								어떤 내용이 나와야 할까요?
-							</p>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		</div>
@@ -118,11 +111,10 @@ export default {
 		flex-grow: 1;
 
 		.card {
-			margin: 0.3em;
+			margin: 1em 1em 0em 1em;
 		    display: inline-block;
 		    overflow: visible;
 		    border: 1px solid #ccc;
-		    width: 100%;
 		    max-width: 400px;
 		}
 	}
