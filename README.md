@@ -1,6 +1,6 @@
-# blog_nemv
+# blog_nemv 개발 동기
 
-> A Vue.js project
+> Node + Express + Mongo + Vue JS 를 이용해 모바일 테블릿, PC 등에서 사용 가능한 블로그 사이트 엔진을 만드는 것이다.
 
 ## Build Setup
 
