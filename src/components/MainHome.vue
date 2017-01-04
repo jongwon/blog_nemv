@@ -26,18 +26,16 @@
 		<div class="body screen-center" v-if="!loading">
 			<div class="row">
 				<div class="col s12 cards-container">
-					<div class="card" v-for="i in 10" style="display: inline-block;">
-					    <div class="card-image waves-effect waves-block waves-light" style="padding:1em;">
+					<div class="card article-card" v-for="i in 10" style="display: inline-block;">
+						<div class="articla-title">
+					      <span class="card-title activator grey-text text-darken-4">타이틀</span>
+					    </div>
+					    <div class="article-summary waves-effect waves-block waves-light">
 					      여기에 글에 대한 소개글이 간략하게 들어가는 것이 좋겠다.  <br>
 					      이런 식으로 몇개를 더 만들어 봐야 할 듯...
 					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-					      <p><a href="#">This is a link</a></p>
-					    </div>
-					    <div class="card-reveal">
-					      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-					      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+					    <div class="article-etc">
+					    작성일 : 2017-01-03
 					    </div>
 					</div>
 				</div>
@@ -116,6 +114,23 @@ export default {
 		    overflow: visible;
 		    border: 1px solid #ccc;
 		    max-width: 400px;
+		    padding: 1em;
+		    border-radius: 5px;
+		}
+
+		.article-card {
+
+			.articla-title {
+
+			}
+
+			.article-summary {
+
+			}
+
+			.article-etc{
+				float: right;
+			}
 		}
 	}
 }

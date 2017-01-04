@@ -1,7 +1,7 @@
 const local = process.env.local || '';
 module.exports = [
     {
-        name: 'myhome',
+        name: 'bloghome',
         path: local+'/blog_nemv/bloghome',
         icon: 'home',
         title: 'My Home'

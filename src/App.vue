@@ -30,11 +30,12 @@ export default {
   },
 
   created() {
-    this.$router.push('bloghome');
+
   },
 
   mounted() {
-
+    this.$router.push('bloghome');
+    console.log('go blog home')
   },
 
   beforeDestroy:function(){
