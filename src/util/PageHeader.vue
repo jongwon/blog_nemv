@@ -1,21 +1,20 @@
 <template>
-	<div class="navbar-fixed">
-		<nav>
-		    <div class="nav-wrapper lighten-1" :class="bgColor">
+	<div id="navbar-top-fixed-layer" class="navbar-fixed">
+		<nav :style="{width: queryWidth +'px'}">
+		    <div class="nav-wrapper lighten-1" :class="[bgColor]">
 		      	<ul v-if="slidmenushow" class="left">
 					<li @click="showNav()">
-						<a class="waves-effect waves-light"><i class="material-icons">menu</i></a>
+						<a class="waves-effect waves-light hide-on-large-only"><i class="material-icons">menu</i></a>
 					</li>
 			  	</ul>
-		      	<ul v-if="backbuttonshow" class="left">
+		      	<ul v-if="backbuttonshow" id="nav-mobile" class="left">
 					<li @click="goBack()">
 						<a class="waves-effect waves-light"><i class="material-icons">chevron_left</i></a>
 					</li>
 			  	</ul>
-		      	<a class="brand-logo center"> 
-		      		{{title}}
-		      		{{subTitle}} 
-		      	</a>
+		      	<span class="brand-logo center action-bar-title"> 
+		      		<template v-if="subTitle">[{{subTitle}}] </template><span style="font-size: .85em">{{title}}</span>
+		      	</span>
 		      	<slot name="right-menu"></slot>
 		    </div>
 		</nav>
@@ -24,6 +23,15 @@
 
 <script>
 export default {
+	name: 'page-header',
+	data() {
+		return {
+			windowWidth: 0,
+      		windowHeight: 0,
+			queryWidth: 0,
+      		queryHeight: 0,
+		}
+	},
 	props:{
 		bgColor: {
 			type:String,
@@ -48,23 +56,60 @@ export default {
 	},
 
 	created() {
-		
+
 	},
 
 	mounted:function() {
-		$('.dropdown-button').dropdown({
-			inDuration: 300,
-			outDuration: 225,
-			constrain_width: false, // Does not change width of dropdown to that of the activator
-			hover: false, // Activate on hover
-			gutter: 0, // Spacing from edge
-		    belowOrigin: false, // Displays dropdown below the button
-		    alignment: 'left' // Displays dropdown with edge aligned to the left of button
-		});
+		this.$nextTick(function() {
+			window.addEventListener('resize', this.getWindowWidth);
+			window.addEventListener('resize', this.getWindowHeight);
+			window.addEventListener('resize', this.getQueryWidth);
+			window.addEventListener('resize', this.getQueryHeight);
+
+			//Init
+			this.getWindowWidth()
+			this.getWindowHeight()
+			this.getQueryWidth()
+			this.getQueryHeight()
+		})
+		if (window.AdWebBridge) {
+			$("#main-body").css({'paddingBottom':'55px'})
+		}
+		if(window.AdWebBridge==undefined) {
+			$(".page-footer").show()
+		}
 	},
 
 	methods: {
-		
+		getWindowWidth(event) {
+			this.windowWidth = document.documentElement.clientWidth;
+		},
+
+		getWindowHeight(event) {
+			this.windowHeight = document.documentElement.clientHeight;
+			
+			console.log("this.windowHeight : " + this.windowHeight)
+			console.log("this.windowWidth : " + this.windowWidth)
+
+			if (window.location.pathname.indexOf("splashscreen")<0) {
+				console.log("getSplScrWindowWidth +++++++++++++++++++++")
+				$("#main-body").css({'height': ''})
+			}
+
+			$("#main-body").css({'min-height': this.windowHeight + 'px'})
+			let wd = this.windowWidth - 128;
+
+			$(".action-bar-title").css({'width' : wd + 'px'})
+		},
+
+		getQueryWidth() {
+			this.queryWidth = $("#navbar-top-fixed-layer").width();
+		},
+
+		getQueryHeight() {
+			this.queryHeight = $("#navbar-top-fixed-layer").height();
+		},
+
 		showNav:function(){
 			this.$root.bus.$emit('show-nav');
 		},
@@ -74,7 +119,14 @@ export default {
 				this.$router.go(-1);
 			});
 		}
-	}
+	},
+
+	beforeDestroy:function(){
+		window.removeEventListener('resize', this.getWindowWidth);
+    	window.removeEventListener('resize', this.getWindowHeight);
+    	window.removeEventListener('resize', this.getQueryWidth);
+		window.removeEventListener('resize', this.getQueryHeight);
+	},
 }
 
 </script>
@@ -85,5 +137,10 @@ nav .brand-logo {
 }
 .right-menu {
 	display: flex !important;
+}
+.action-bar-title {
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 </style>

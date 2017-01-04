@@ -2,7 +2,7 @@
   <div id="app">
     <menus></menus>
 
-    <main>
+    <main id="main-body">
       <div id="body">
         <router-view></router-view>
       </div>
@@ -30,14 +30,7 @@ export default {
   },
 
   created() {
-    let self = this;
-    
-    if(!self.user || !self.user.userId){
-      self.$router.push({name:'login'});
-      return;
-    }
-
-    self.$router.push('myhome');
+    this.$router.push('bloghome');
   },
 
   mounted() {
@@ -80,6 +73,11 @@ export default {
 
 }
 
+#main-body {
+  min-height: 560px;
+  padding-left: 240px;
+}
+
 .screen-center {
   width:100%;
 }
@@ -117,4 +115,5 @@ export default {
   }
 
 }
+
 </style>

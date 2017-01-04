@@ -61,8 +61,8 @@ export default {
 
 	data: function(){
 		return {
-			bgColor: 'blue',
-			title: '블로그 홈',
+			bgColor: 'oragne',
+			title: '기술 블로그',
 			slidmenushow: true,
 			backbuttonshow: false
 		}

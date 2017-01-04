@@ -2,13 +2,13 @@ const local = process.env.local || '';
 module.exports = [
     {
         name: 'myhome',
-        path: local+'/blog_nemv/myhome',
+        path: local+'/blog_nemv/bloghome',
         icon: 'home',
         title: 'My Home'
     }, {
-        name: 'settings',
-        path: local+'/blog_nemv/settings',
+        name: 'techs',
+        path: local+'/blog_nemv/techs',
         icon: 'build',
-        title: '설정'
+        title: '기술 블로그'
     }
 ];

@@ -1,56 +1,58 @@
 <template>
 	<header>
-		<ul id="slide-out" class="side-nav">
-		<template v-if="user">
+		<ul id="slide-out" class="side-nav fixed">
 			<li>
 				<div class="user-profile">
-					<div class="userView profile">
-						<input type="file" name="profile-image" 
-							accept="image/*" style="display:none;">
-						<img class="circle" 
-							src="/blog_nemv/static/blog_nemv/image/user.png" 
-							@click="profileUpload()">
-					</div>
 					<div class="desc">
-						<a><span class="name"> {{user.name}} </span></a>
+						<a><span class="name"> 종원이의 블로그 </span></a>
 					</div>
 				</div>
 			</li>
-			<li><a class="waves-effect" @click="logout()">Logout</a></li>
 			<li><div class="divider"></div></li>
 			<li v-for="menu in menus">
 				<a @click="goPage(menu.path)">
 					<i class="material-icons">{{menu.icon}}</i> {{menu.title}} 
 				</a>
 			</li>
-	    </template>
-	    <template v-else>
-			<li>
-				로그아웃 되었습니다. <br>
-				로그인을 해주십시오. 
-			</li>
-	    </template>      
 		</ul>
       	<a href="#" data-activates="slide-out" class="button-collapse"></a>
     </header>
 </template>
 
 <style lang="scss" scoped>
+
+#slide-out {
+	background-color: #51859e;
+
+	li, li a, li i {
+		color: #fff;
+	}
+}
+
+.side-nav li.active {
+    background-color: rgba(0,0,0,0.08) !important;
+}
+
+
+.side-nav li.active {
+    background-color: rgba(0,0,0,0.08) !important;
+}
+
 .side-nav {
 
 	.user-profile {
 		display: flex;
 		flex-direction: row;
 
-		.profile{
-			width: 96px;
-			display: inline-block;
-		}
 		.desc {
 			display: inline-block;
     		padding: 16px 0px 0px 0px;
 		}
 
+	}
+
+	&.fixed {
+		width: 240px;
 	}
 }
 </style>
@@ -64,12 +66,7 @@ export default {
 	name: 'menus',
 
 	mounted(){
-		$(this.$el).find('.button-collapse').sideNav({
-				menuWidth: 240,
-				edge: 'left',
-				closeOnClick: true
-			}
-		);
+		$(this.$el).find('.button-collapse').sideNav();
 		this.$root.bus.$on('show-nav', this.showNav)
 		this.$root.bus.$on('hide-nav', this.hideNav)
 	},
@@ -82,7 +79,6 @@ export default {
 	computed: {
 		
 		...mapGetters({
-			imageServerUrl: "imageServerUrl",
 			user: "user"
 		}),
 

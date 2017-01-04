@@ -8,12 +8,9 @@ Vue.use(VueRouter)
 import LoginForm from '../intro/LoginForm'
 
 import MyHome from '../components/MainHome'
+import TechBlogs from '../components/TechBlogs';
 
-// 설정
-import Settings from '../settings/Settings'
 
-import Terms from '../settings/Terms'
-import Privacy from '../settings/Privacy'
 
 const local = process.env.local || '';
 
@@ -33,30 +30,15 @@ function requireAuth (to, from, next) {
 
 const routes = [
 
-    { path: local+'/', component: MyHome, beforeEnter: requireAuth },
+    { path: local+'/', component: MyHome},
+    
+    { path: local+'/blog_nemv/bloghome', name:'bloghome', component: MyHome},
+    { path: local+'/blog_nemv/techs', name:'techs', component: TechBlogs},
 
-    // 나의 과목 : mywork
-    { path: local+'/blog_nemv/myhome', name:'myhome', component: MyHome, beforeEnter: requireAuth },
-
-    // 설정 : settings
-    { path: local+'/blog_nemv/settings', name:'settings', component: Settings, beforeEnter: requireAuth },
-
-    { path: local+'/blog_nemv/logout',
-        beforeEnter (to, from, next) {
-            // auth.logout()
-            next(local+'/')
-        }
-    },
-    { path: local+'/blog_nemv/login', name:'login', component: LoginForm },
-
-    // { path: '/splashscreen', component: splashscreen },
-
-    { path: local+'/blog_nemv/terms', name:'terms', component: Terms },
-    { path: local+'/blog_nemv/privacy', name:'privacy', component: Privacy },
 ]
 
 const router = new VueRouter({
-    mode: 'history',
+    // mode: 'history',
     base: __dirname,
     routes: routes,
 
