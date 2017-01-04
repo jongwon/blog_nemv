@@ -12,8 +12,6 @@ import TechBlogs from '../components/TechBlogs';
 
 
 
-const local = process.env.local || '';
-
 function requireAuth (to, from, next) {
     let user = router.store.getters.user;
     console.log(user);
@@ -30,10 +28,10 @@ function requireAuth (to, from, next) {
 
 const routes = [
 
-    { path: local+'/', component: BlogHome},
+    { path: '/', component: BlogHome},
     
-    { path: local+'/blog_nemv/bloghome', name:'bloghome', component: BlogHome},
-    { path: local+'/blog_nemv/techs', name:'techs', component: TechBlogs},
+    { path: '/bloghome', name:'bloghome', component: BlogHome},
+    { path: '/techs', name:'techs', component: TechBlogs},
 
 ]
 

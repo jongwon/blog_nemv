@@ -34,7 +34,7 @@ export default {
   },
 
   mounted() {
-    this.$router.push('bloghome');
+    this.$router.push({path:'/bloghome'});
     console.log('go blog home')
   },
 
