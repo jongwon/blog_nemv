@@ -23,6 +23,10 @@ const mutations = {
 	logout: (state) => {
 		state.user = null;
 		state.categoryList = [];
+	},
+
+	blogs: (state, blogs) => {
+		state.blogs = blogs || []; 
 	}
 	
 }

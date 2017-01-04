@@ -26,12 +26,16 @@
 		<div class="body screen-center" v-if="!loading">
 			<div class="row">
 				<div class="col s12 cards-container">
-					<div class="card">
-						<div class="card-content">
-							<p>
-								어떤 내용이 나와야 할까요?
-							</p>
-						</div>
+					<div class="card article-card" v-for="blog in blogs" style="display: inline-block;">
+						<div class="articla-title">
+					      <span class="card-title activator grey-text text-darken-4">{{blog.title}}</span>
+					    </div>
+					    <div class="article-summary waves-effect waves-block waves-light">
+					      {{blog.content}}
+					    </div>
+					    <div class="article-etc">
+					    작성일 : 2017-01-03
+					    </div>
 					</div>
 				</div>
 			</div>
@@ -71,7 +75,8 @@ export default {
 	computed: {
 		...mapGetters({
 			loading: "loading",
-			user: "user"
+			user: "user",
+			blogs: "blogs"
 		})
 	},
 
@@ -79,7 +84,10 @@ export default {
 
 	}, 
 	mounted(){
-
+		this.$store.dispatch('blogs_tech', {
+			success(){}, 
+			fail(){}
+		});
 	},
 
 	methods: {
@@ -94,6 +102,39 @@ export default {
 </script>
 <style lang="scss" scoped>
 .myhome-page{
+	
+	.cards-container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center; 
+		align-items: center;
+		flex-grow: 1;
 
+		.card {
+			margin: 1em 1em 0em 1em;
+		    display: inline-block;
+		    overflow: visible;
+		    border: 1px solid #ccc;
+		    max-width: 400px;
+		    padding: 1em;
+		    border-radius: 5px;
+		}
+
+		.article-card {
+
+			.articla-title {
+
+			}
+
+			.article-summary {
+
+			}
+
+			.article-etc{
+				float: right;
+			}
+		}
+	}
 }
 </style>

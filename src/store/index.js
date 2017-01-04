@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as action_user from './action_user'
+import * as action_blog from './action_blog'
 import mutations from './mutations'
 
 
@@ -11,11 +12,14 @@ const state = {
 	ctx: '',
 	imageServerUrl:'',
 	loading: false,
-	user: null
+	user: null,
+	blogs:[],
+	part:'all'
 };
 
 const actions = {
-	...action_user
+	...action_user,
+	...action_blog
 };
 
 const getters = {
@@ -24,6 +28,7 @@ const getters = {
 	loginState: state => state.user && state.user.userId,
 	loading: state => state.loading,
 	user: state => state.user,
+	blogs: state => state.blogs
 };
 
 const store = new Vuex.Store({
